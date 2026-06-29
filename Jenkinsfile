@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                     #test -f build/index.html
-                    npm test
+                    CI=true npm test
                 '''
             }
         }
@@ -58,7 +58,7 @@ pipeline {
     }
     post {
         always {
-            junit 'test-results/junit.xml'
+            junit testResults: 'test-results/*.xml', allowEmptyResults: true
         }
     }
 }
